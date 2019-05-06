@@ -37,6 +37,106 @@
           }
         }
       }
+    },
+    "uygulama": {
+      "root": "projects/uygulama/",
+      "sourceRoot": "projects/uygulama/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/uygulama",
+            "index": "projects/uygulama/src/index.html",
+            "main": "projects/uygulama/src/main.ts",
+            "polyfills": "projects/uygulama/src/polyfills.ts",
+            "tsConfig": "projects/uygulama/tsconfig.app.json",
+            "assets": [
+              "projects/uygulama/src/favicon.ico",
+              "projects/uygulama/src/assets"
+            ],
+            "styles": [
+              "projects/uygulama/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/uygulama/src/environments/environment.ts",
+                  "with": "projects/uygulama/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "uygulama:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "uygulama:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "uygulama:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/uygulama/src/test.ts",
+            "polyfills": "projects/uygulama/src/polyfills.ts",
+            "tsConfig": "projects/uygulama/tsconfig.spec.json",
+            "karmaConfig": "projects/uygulama/karma.conf.js",
+            "styles": [
+              "projects/uygulama/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/uygulama/src/favicon.ico",
+              "projects/uygulama/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/uygulama/tsconfig.app.json",
+              "projects/uygulama/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "kutuphane"
